@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Work days</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/66857c785c.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+      /* #header {
+        background-image: url('https://www.citypng.com/public/uploads/preview/hanging-croatian-flag-hd-png-11654038532px1pvuzoce.png');
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+        background-position: left 20% top 0;
+        color: black;
+      } */
+      svg{
+  position: top;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+}
+      header {
+        /* opacity: 0.9; */
+        margin-top: -10%;
+      }
+      .header-img {
+        height: 10%;
+      }
+
+      .color1 {
+        background-color: #ff0000;
+        height: 25px;
+        opacity: 0.8;
+        box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);
+      }
+      .color2 {
+        background-color: #fff;
+        height: 25px;
+      }
+      .color3 {
+        background-color: #003399;
+        height: 25px;
+        top: -23px;
+        position: relative;
+        z-index: -1;
+        opacity: 0.8;
+        box-shadow: 0 2px 5px #003399;
+      }
+      .crown {
+        position: relative;
+        top: -15px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      img {
+        margin-left: 45%;
+        width: 50px;
+        height: 50px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .dates {
+        align-items: center;
+        /* display: flex; */
+      }
+      @media screen and (max-width: 600px) {
+        .container {
+          margin-bottom: 25px;
+        }
+        .side {
+          display: none;
+        }
+      }
+      .side {
+        /* position: fixed;
+        top: 8%;
+        left: 0;
+        width: 10%;
+        height: 100%;
+        background-color: #003399;
+        color: white;
+        padding: 10px;
+        z-index: 1; */
+      }
+      .right {
+        /* position: fixed;
+        top: 8%;
+        right: 0;
+        width: 10%;
+        height: 100%;
+        background-color: #003399;
+        color: white;
+        padding: 10px;
+        z-index: 1; */
+      }
+
+    </style>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 60 1440 200"><path fill="#0099ff" fill-opacity="1" d="M0,256L40,240C80,224,160,192,240,154.7C320,117,400,75,480,69.3C560,64,640,96,720,112C800,128,880,128,960,112C1040,96,1120,64,1200,69.3C1280,75,1360,117,1400,138.7L1440,160L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path></svg>
+    <!-- {% include 'includes/background.html' %} -->
+    <div class="side">
+      <!-- {% include 'includes/background.html' %} -->
+    </div>
+    <div class="right">
+      <!-- {% include 'includes/background.html' %} -->
+    </div>
+    <header>
+      
+      <!-- Jumbotron -->
+      <!-- <div class="header-img">
+        <div class="color1"></div>
+        <div class="color2"></div>
+        <div class="crown">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Coat_of_arms_of_Croatia.svg/200px-Coat_of_arms_of_Croatia.svg.png"
+          />
+        </div>
+        <div class="color3"></div> -->
+      </div>
+      <div class="p-5 text-center bg-light" id="header">
+        <h1 class="mb-3">Croatia's Working Days Calculator</h1>
+        <h4 class="mb-3">Find the number of working days in a month</h4>
+        <!-- <a class="btn btn-primary" href="" role="button">Call to action</a> -->
+      </div>
+      <!-- Jumbotron -->
+      
+    </header>
+    <div class="container">
+      <form class="form-outline mb-4" action="days" method="POST">
+        {% csrf_token %}
+        <div class="dates">
+          Start Date:
+          <input
+            type="text"
+            value="{{sdate}}"
+            id="pickadate"
+            class="form-control"
+            name="start"
+          />
+          End Date:
+          <input
+            type="text"
+            value="{{edate}}"
+            id="pickadate2"
+            class="form-control"
+            name="end"
+            onchange="validateForm()"
+          />
+          {% if sat == 'yes' %} Saturday included:
+          <input name="sat" type="checkbox" value="yes" checked /> {% else %}
+          Saturday included: <input name="sat" type="checkbox" value="yes" />
+          {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary" id="button">Submit</button>
+      </form>
+      <div class="results">
+        <h1>Results</h1>
+        <span>
+          <p>Number of working days: {{no_days}}</p>
+          <p>Number of weekends: {{weekends}}</p>
+          <p>Number of holidays: {{holidays}}</p>
+        </span>
+      </div>
+      <div class="holidays">
+        <h1>Holidays</h1>
+        <span>
+          {% for holiday in name_holidays %}
+          <p class="holiday">{{holiday}}</p>
+          {% endfor %}
+        </span>
+      </div>
+    </div>
+    
+    <!-- <input type="text" value="" id="pickadate" class="pickadate" /> -->
+
+    <script>
+      $("#pickadate, #pickadate2").flatpickr({
+        dateFormat: "d.m.Y",
+        maxDate: new Date().fp_incr(365), // 14 days from now
+        disableMobile: true,
+      });
+      var hl = document.querySelectorAll(".holiday");
+      for (var i = 0; i < hl.length; i++) {
+        date = hl[i].innerHTML;
+        dateParts = date
+          .replace(/([a-zA-Z ])/g, "")
+          .replace(",,", "")
+          .replace(",", "")
+          .replace(/([šđčćžŠĐČĆŽ])/g, "");
+        dateParts = dateParts.replace(",", "");
+        dateParts = dateParts.split("-");
+        date = dateParts[2] + "." + dateParts[1] + "." + dateParts[0];
+        var holiday = hl[i].innerHTML;
+        hl[i].innerHTML =
+          hl[i].innerHTML
+            .replace(/[0-9]/g, "")
+            .replace("--", "")
+            .replace(",,", ",") +
+          " " +
+          date;
+      }
+      var btn = document.getElementById("button");
+      btn.addEventListener("click", function () {
+        swal("Calculating...", {
+          buttons: false,
+          timer: 5000,
+        });
+      });
+      function validateForm() {
+        sdate = document.getElementById("pickadate").value;
+        edate = document.getElementById("pickadate2").value;
+        sdate.split(".");
+        edate.split(".");
+        var month1 = sdate[1];
+        var month2 = edate[1];
+        if (month1 != month2) {
+          btn.style.display = "none";
+          // alert("Please select dates in the same month");
+          swal("Accepts dates within one month range", {
+            buttons: ["Oh noez!", true],
+          });
+        } else {
+          btn.style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>
