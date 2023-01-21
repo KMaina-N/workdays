@@ -197,11 +197,13 @@
       </form>
       <div class="results">
         <h1>Results</h1>
+        {% if no_days and weekends and holidays and name_holidays %}
         <span>
           <p>Number of working days: {{no_days}}</p>
           <p>Number of weekends: {{weekends}}</p>
           <p>Number of holidays: {{holidays}}</p>
         </span>
+        {% endif %}
       </div>
       <div class="holidays">
         <h1>Holidays</h1>
