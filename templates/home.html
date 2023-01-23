@@ -207,11 +207,13 @@
       </div>
       <div class="holidays">
         <h1>Holidays</h1>
+        {% if name_holidays %}
         <span>
           {% for holiday in name_holidays %}
           <p class="holiday">{{holiday}}</p>
           {% endfor %}
         </span>
+        {% endif %}
       </div>
     </div>
     
