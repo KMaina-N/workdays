@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .main {
+        border: none;
+        display: grid;
+        grid-gap: 0.5vw;
+        grid-template-columns: repeat(4, minmax(150px, 1fr));
+        grid-template-rows: repeat(auto-fill, minmax(90px, 1fr));
+      }
+
+      .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        position: relative;
+        transition: 0.5s;
+        height: 90px;
+        margin-bottom: 0;
+        align-items: center;
+        justify-content: center;
+      }
+      @media screen and (max-width: 768px) {
+        .main {
+        grid-gap: 0.5vw;
+          grid-template-columns: repeat(2, minmax(150px, 1fr));
+        }
+        .card {
+            height: 100px;
+          align-items: flex-start;
+          overflow-y: auto;
+          padding-top: 5px;
+          border-radius: 5px;
+        }
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-sm">
+        <div class="main">
+            {% for i in holiday %}
+            <div class="card">
+              <p>{{i}}</p>
+            </div>
+            {% endfor %}
+          </div>
+    </div>
+    <script>
+        var hl = document.querySelectorAll(".card");
+      for (var i = 0; i < hl.length; i++) {
+        date = hl[i].innerHTML;
+        dateParts = date
+          .replace(/([a-zA-Z ])/g, "")
+          .replace(",,", "")
+          .replace(",", "")
+          .replace(/([šđčćžŠĐČĆŽ</>])/g, "");
+        dateParts = dateParts.replace(",", "");
+        // console.log(dateParts);
+        dateParts = dateParts.split("-");
+        date = dateParts[2] + "." + dateParts[1] + "." + dateParts[0];
+        var formated = date.replace(']', '').replace(']', '')
+        var holiday = hl[i].innerHTML;
+        date = formated.replace(/([''''])/g, "").replace('[', '')
+        hl[i].innerHTML = holiday.replace(/[0-9]/g, "").replace("--", "").replace('[', '').replace(']', '').replace(/"|'/g, '')
+        hl[i].innerHTML += date;
+      }
+    </script>
+  </body>
+</html>
+{% endblock %}

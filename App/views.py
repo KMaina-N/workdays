@@ -27,7 +27,6 @@ def days(request):
         headers
 
         data = requests.get(url, headers=headers).json()
-        print(data)
 
         h = []
         for i in data:
@@ -58,7 +57,7 @@ def days(request):
                 monthly_holidays.append(i[5:7])
         for i in holiday_list:
             if mon in i[1][5:7]:
-                print('holiday', i)
+                # print('holiday', i)
                 name_holidays.append(i)
         # print('name of holidays:',name_holidays)
         hl = []
@@ -71,7 +70,7 @@ def days(request):
         holidays = len(monthly_holidays)
         month = f'{mon}'
         days = pd.bdate_range(start=f'{year}-{month}-{day1}', end=f'{year}-{month}-{day2}', freq='C', weekmask=weekmask, holidays=offtime).format(formatter=lambda x: x.strftime('%Y-%m-%d %A'))
-        print(len(days))
+        # print(len(days))
         no_days = len(days)
         y = int(year)
         mn = int(Month)
@@ -96,3 +95,23 @@ def days(request):
         return render(request, 'home.html', context=context)
    
     return render(request, 'home.html')
+
+def year_holidays(request):
+    year = 2023
+    url = f"https://public-holiday.p.rapidapi.com/{year}/HR"
+
+    headers = {
+                "X-RapidAPI-Key": "f348a4deabmsh384459329fcaeb9p174eb3jsnac1ac1a8d14d",
+                "X-RapidAPI-Host": "public-holiday.p.rapidapi.com"
+            }
+    headers
+
+    data = requests.get(url, headers=headers).json()
+    # print(data)
+    h = []
+    for i in data:
+        name = i['localName']
+        date = i['date']
+        l = [name, date]
+        h.append(l)
+    return render(request, 'year.html', {'holiday':h})
