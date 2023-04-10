@@ -18,11 +18,24 @@
         overflow: hidden;
         position: relative;
         transition: 0.5s;
-        height: 90px;
+        height: 100px;
         margin-bottom: 0;
         align-items: center;
         justify-content: center;
       }
+      .card:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        transform: scale(1.05);
+      }
+
+      .card p {
+        font-weight: 600;
+        color: #000000;
+        text-align: center;
+        padding: 10px;
+
+      }
+
       @media screen and (max-width: 768px) {
         .main {
         grid-gap: 0.5vw;

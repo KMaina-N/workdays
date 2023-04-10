@@ -1,3 +1,32 @@
+<style>
+    .yearly{
+        margin-left: 30px;
+        border-left: 1px solid #e0e0e0;
+    }
+
+
+    /* make the active nav a different colour */
+    
+
+    /* make the text in nav items go up and form tab like stuffs when hover */
+  
+    /* .navbar-nav .nav-item:hover {
+        background-color: #8edbff;
+        zoom: 1.1;
+        border-radius: 10px;
+    } */
+
+    .nav-link {
+        text-align: center;
+    }
+
+  .nav-link.activeTab {
+    color: rgb(255, 255, 255);
+    background-color: #3B71CA;
+    border-radius: 5px 5px 0 0;
+  }
+
+</style>	
 <div class="container">
     <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,7 +61,7 @@
           <li class="nav-item">
             <a class="nav-link" href="days">Monthly Working Days</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item yearly">
             <a class="nav-link" href="year">Holidays</a>
           </li>
         </ul>
@@ -60,3 +89,28 @@
   </nav>
   <!-- Navbar -->
 </div>
+<script>
+const navLinks = document.querySelectorAll('.nav-link');
+// navLinks.forEach(link => {
+//   link.addEventListener('click', () => {
+//     navLinks.forEach(link => {
+//       link.classList.remove('active');
+//     });
+//     link.classList.add('active');
+    
+//   });
+//   console.log(link.classList);
+// });
+
+for (let i = 0; i < navLinks.length; i++) {
+  if('active' in navLinks[i].classList){
+    navLinks[i].classList.remove('activeTab');
+  }
+  if(navLinks[i].href == window.location.href){
+    navLinks[i].classList.add('activeTab');
+  }
+  console.log(navLinks[i].classList);
+}
+
+
+</script>

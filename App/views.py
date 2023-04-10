@@ -83,11 +83,14 @@ def days(request):
         
         sat_days = sum(1 for x in sat_matrix if x[satur] != 0)
         sun_days = sum(1 for x in sund_matrix if x[sund] != 0)
-        
+        print(sat_days)
+        print(sun_days)
         if sat_days > sun_days:
             weekends = sat_days
         else:
             weekends = sun_days
+
+        
 
         sdate = request.POST.get('start')
         edate = request.POST.get('end')
